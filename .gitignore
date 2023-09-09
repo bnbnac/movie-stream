@@ -37,4 +37,4 @@ out/
 .vscode/
 
 src/main/resources/static/movies
-src/main/resources/.properties
+TODO.md

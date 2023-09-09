@@ -1,9 +1,13 @@
 package com.bnbnac.moviestream.controller;
 
+import com.bnbnac.moviestream.SessionAttribute;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HomeController {
@@ -15,9 +19,14 @@ public class HomeController {
     }
 
     @PostMapping("/")
-    public String postPassword(@RequestParam("password") String password) {
-        if (this.password.equals(password)) {
-            return "movies";
+    public String postPassword(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
+        if (this.password.equals(request.getParameter("password"))) {
+            session.setAttribute("ip", request.getRemoteAddr());
+            String sessionID = session.getId();
+            Cookie sessionCookie = new Cookie(SessionAttribute.SESSION_ID.getValue(), sessionID);
+            response.addCookie(sessionCookie);
+
+            return "redirect:/movies";
         }
         return "home";
     }
