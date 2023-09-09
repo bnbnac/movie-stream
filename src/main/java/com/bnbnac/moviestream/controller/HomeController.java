@@ -21,10 +21,15 @@ public class HomeController {
     @PostMapping("/")
     public String postPassword(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
         if (this.password.equals(request.getParameter("password"))) {
-            session.setAttribute("ip", request.getRemoteAddr());
+            String userIp = request.getRemoteAddr();
             String sessionID = session.getId();
-            Cookie sessionCookie = new Cookie(SessionAttribute.SESSION_ID.getValue(), sessionID);
-            response.addCookie(sessionCookie);
+
+            session.setAttribute(SessionAttribute.USER_IP.getValue(), userIp);
+
+            Cookie userIpCookie = new Cookie(SessionAttribute.USER_IP.getValue(), userIp);
+            Cookie sessionIDCookie = new Cookie(SessionAttribute.SESSION_ID.getValue(), sessionID);
+            response.addCookie(userIpCookie);
+            response.addCookie(sessionIDCookie);
 
             return "redirect:/movies";
         }
