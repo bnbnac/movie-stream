@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HomeController {
-    private final String password = System.getenv("MOVIESTREAM");
-
     @GetMapping("/")
     public String home() {
         return "home";
@@ -20,16 +18,11 @@ public class HomeController {
 
     @PostMapping("/")
     public String postPassword(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
-        if (this.password.equals(request.getParameter("password"))) {
-            String userIp = request.getRemoteAddr();
-            String sessionID = session.getId();
-
-            session.setAttribute(SessionAttribute.USER_IP.getValue(), userIp);
-
-            Cookie userIpCookie = new Cookie(SessionAttribute.USER_IP.getValue(), userIp);
-            Cookie sessionIDCookie = new Cookie(SessionAttribute.SESSION_ID.getValue(), sessionID);
-            response.addCookie(userIpCookie);
-            response.addCookie(sessionIDCookie);
+        String password = System.getenv("MOVIESTREAM");
+        if (password.equals(request.getParameter("password"))) {
+            session.setAttribute(SessionAttribute.USER_IP.getValue(), request.getRemoteAddr());
+            response.addCookie(new Cookie(SessionAttribute.USER_IP.getValue(), request.getRemoteAddr()));
+            response.addCookie(new Cookie(SessionAttribute.SESSION_ID.getValue(), session.getId()));
 
             return "redirect:/movies";
         }
