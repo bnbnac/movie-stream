@@ -2,7 +2,6 @@ package com.bnbnac.moviestream.controller;
 
 import com.bnbnac.moviestream.SessionAttribute;
 import com.bnbnac.moviestream.service.PasswordService;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -26,9 +25,7 @@ public class HomeController {
     @PostMapping("/")
     public String postPassword(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
         if (passwordService.match(request.getParameter("password"))) {
-            session.setAttribute(SessionAttribute.USER_IP.getValue(), request.getRemoteAddr());
-            response.addCookie(new Cookie(SessionAttribute.USER_IP.getValue(), request.getRemoteAddr()));
-            response.addCookie(new Cookie(SessionAttribute.SESSION_ID.getValue(), session.getId()));
+            session.setAttribute(SessionAttribute.LOGGED_IN.getValue(), true);
             return "redirect:/movies";
         }
         return "home";

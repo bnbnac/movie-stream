@@ -1,8 +1,8 @@
 package com.bnbnac.moviestream;
 
 public enum SessionAttribute {
-    SESSION_ID("sessionID"),
-    USER_IP("ip");
+    LOGGED_IN("loggedIn"),
+    ;
 
     private final String value;
 

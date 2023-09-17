@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error | Hogwarts</title>
+</head>
+
+<body>
+<h1>Error</h1>
+<p th:text="${message}"></p>
+<script type="text/javascript">
+        setTimeout(function () {
+            window.location.href = "/";
+        }, 3000);
+</script>
+</body>
+
+
+</html>

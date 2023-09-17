@@ -1,9 +1,9 @@
 package com.bnbnac.moviestream.exception;
 
-public class LoadPassword extends RuntimeException {
-    private static final String MESSAGE = "server cannot load password";
+public class LoadPasswordException extends RuntimeException {
+    private static final String MESSAGE = "server cannot load the password";
 
-    public LoadPassword() {
+    public LoadPasswordException() {
         super(MESSAGE);
     }
 }
