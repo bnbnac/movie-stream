@@ -23,11 +23,12 @@ public class HomeController {
     }
 
     @PostMapping("/")
-    public String postPassword(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
+    public String postPassword(HttpServletRequest request, HttpServletResponse response, Model model) {
         if (passwordService.match(request.getParameter("password"))) {
-            session.setAttribute(SessionAttribute.LOGGED_IN.getValue(), true);
-            return "redirect:/movies";
+            request.getSession().setAttribute(SessionAttribute.LOGGED_IN.getValue(), true);
+            return "movies";
         }
+        model.addAttribute("error", true);
         return "home";
     }
 }

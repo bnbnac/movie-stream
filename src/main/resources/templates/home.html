@@ -9,6 +9,9 @@
             <input th:type="password" name="password" placeholder="password?" th:maxlength="100" />
             <input type="submit" value="Submit">
         </form>
+        <div th:if="${error}">
+            <p>incorrect password</p>
+        </div>
     </body>
 
 
