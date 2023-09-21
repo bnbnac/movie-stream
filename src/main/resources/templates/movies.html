@@ -8,6 +8,11 @@
 <form action="/" method="post">
     here are the movies
 </form>
+
+<ul th:each="file : ${files}">
+    <li th:text="${file}">Feed</li>
+</ul>
+
 </body>
 
 
