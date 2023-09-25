@@ -1,8 +1,8 @@
 package com.bnbnac.moviestream.service;
 
 import com.bnbnac.moviestream.constant.EnvironmentVariable;
-import com.bnbnac.moviestream.exception.LoadPasswordException;
-import com.bnbnac.moviestream.exception.MovieStorageException;
+import com.bnbnac.moviestream.exception.LoadVariableException;
+import com.bnbnac.moviestream.exception.LoadMovieException;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -23,7 +23,8 @@ public class MovieService {
     public MovieService() {
         String storage = System.getenv(EnvironmentVariable.MOVIE_STORAGE);
         if (isNullOrBlank(storage)) {
-            throw new LoadPasswordException();
+            throw new LoadVariableException("movie storage path not found. $MOVIE_STORAGE : ",
+                    EnvironmentVariable.MOVIE_STORAGE);
         }
         movies = load(storage);
     }
@@ -32,7 +33,7 @@ public class MovieService {
         List<Path> files = collectFiles(Paths.get(storage));
 
         if (files.isEmpty()) {
-            throw new MovieStorageException();
+            throw new LoadMovieException("no movies found in the storage");
         }
 
         Collections.sort(files);
@@ -47,11 +48,11 @@ public class MovieService {
                 neglectHiddenFile(file, files);
             }
         } catch (IOException e) {
-            throw new MovieStorageException();
+            throw new LoadMovieException("check the exact movie storage path");
         }
         return files;
     }
-    
+
     private void neglectHiddenFile(Path file, List<Path> files) {
         if (!file.getFileName().toString().startsWith(".")) {
             files.add(file);

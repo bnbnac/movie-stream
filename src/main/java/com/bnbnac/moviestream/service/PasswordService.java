@@ -1,8 +1,7 @@
 package com.bnbnac.moviestream.service;
 
 import com.bnbnac.moviestream.constant.EnvironmentVariable;
-import com.bnbnac.moviestream.exception.LoadPasswordException;
-import com.bnbnac.moviestream.utils.Utility;
+import com.bnbnac.moviestream.exception.LoadVariableException;
 import org.springframework.stereotype.Service;
 
 import static com.bnbnac.moviestream.utils.Utility.isNullOrBlank;
@@ -14,7 +13,8 @@ public class PasswordService {
     public PasswordService() {
         password = System.getenv(EnvironmentVariable.MOVIE_STREAM);
         if (isNullOrBlank(password)) {
-            throw new LoadPasswordException();
+            throw new LoadVariableException("password not found. $MOVIE_STREAM : ",
+                    EnvironmentVariable.MOVIE_STREAM);
         }
     }
 
