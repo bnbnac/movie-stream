@@ -1,8 +1,8 @@
 package com.bnbnac.moviestream.service;
 
 import com.bnbnac.moviestream.constant.EnvironmentVariable;
-import com.bnbnac.moviestream.exception.LoadVariableException;
 import com.bnbnac.moviestream.exception.LoadMovieException;
+import com.bnbnac.moviestream.exception.LoadVariableException;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;

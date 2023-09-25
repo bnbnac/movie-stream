@@ -1,12 +1,12 @@
 package com.bnbnac.moviestream.controller;
 
-import com.bnbnac.moviestream.constant.SessionAttribute;
 import com.bnbnac.moviestream.service.PasswordService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class HomeController {
@@ -24,7 +24,7 @@ public class HomeController {
     @PostMapping("/")
     public String postPassword(HttpServletRequest request, HttpServletResponse response, Model model) {
         if (passwordService.match(request.getParameter("password"))) {
-            request.getSession().setAttribute(SessionAttribute.LOGGED_IN, true);
+            request.getSession();
             return "redirect:/movies";
         }
         model.addAttribute("error", true);
