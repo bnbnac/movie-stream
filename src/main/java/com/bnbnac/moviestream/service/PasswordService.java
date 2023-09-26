@@ -13,8 +13,7 @@ public class PasswordService {
     public PasswordService() {
         password = System.getenv(EnvironmentVariable.MOVIE_STREAM);
         if (isNullOrBlank(password)) {
-            throw new LoadVariableException("password not found. $MOVIE_STREAM : ",
-                    EnvironmentVariable.MOVIE_STREAM);
+            throw new LoadVariableException("password not found. check $MOVIE_STREAM");
         }
     }
 

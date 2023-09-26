@@ -26,8 +26,7 @@ public class MovieService {
     public MovieService() {
         String storage = System.getenv(EnvironmentVariable.MOVIE_STORAGE);
         if (isNullOrBlank(storage)) {
-            throw new LoadVariableException("movie storage path not found. $MOVIE_STORAGE : ",
-                    EnvironmentVariable.MOVIE_STORAGE);
+            throw new LoadVariableException("movie storage path not found. check $MOVIE_STORAGE");
         }
         movies = load(storage);
     }

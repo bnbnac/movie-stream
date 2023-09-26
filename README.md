@@ -6,7 +6,3 @@
 캐싱 : 이어보기
 
 builder pattern
-
-buildMovies -> buildMovie
-
-LoadVariableException does not need second param(always null)
