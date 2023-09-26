@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Welcome | Hogwarts</title>
-    </head>
+<head>
+    <title>Welcome | Hogwarts</title>
+</head>
 
-    <body>
-        <form action="/" method="post">
-            <input th:type="password" name="password" placeholder="password?" th:maxlength="100" />
-            <input type="submit" value="Submit">
-        </form>
-        <div th:if="${error}">
-            <p>incorrect password</p>
-        </div>
-    </body>
+<body>
+<form action="/" method="post">
+    <input th:type="password" name="password" placeholder="password?" th:maxlength="100"/>
+    <input type="submit" value="Submit">
+</form>
+<div th:if="${error}">
+    <p>incorrect password</p>
+</div>
+</body>
 
 
 </html>

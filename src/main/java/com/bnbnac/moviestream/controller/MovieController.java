@@ -1,11 +1,12 @@
 package com.bnbnac.moviestream.controller;
 
+import com.bnbnac.moviestream.model.Movie;
 import com.bnbnac.moviestream.service.MovieService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import java.nio.file.Path;
 import java.util.List;
 
 @Controller
@@ -18,9 +19,16 @@ public class MovieController {
 
     @GetMapping("/movies")
     public String movies(Model model) {
-        List<Path> files = movieService.getMovies();
-        model.addAttribute("files", files);
+        List<Movie> movies = movieService.getMovies();
+        model.addAttribute("movies", movies);
 
         return "movies";
+    }
+
+    @GetMapping("/watch/{id}")
+    public String watch(@PathVariable int id, Model model) {
+        Movie movie = movieService.getMovies().get(id);
+        model.addAttribute("movie", movie);
+        return "watch";
     }
 }

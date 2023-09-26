@@ -5,12 +5,15 @@
 </head>
 
 <body>
-<form action="/" method="post">
-    here are the movies
-</form>
 
-<ul th:each="file : ${files}">
-    <li th:text="${file}">Feed</li>
+<ul th:each="movie : ${movies}">
+    <a th:href="'watch/' + ${movie.id}">
+        <div th:text="${movie.id}"></div>
+        <div th:text="${movie.movieName}"></div>
+        <div th:text="${movie.videoPath}"></div>
+        <div th:text="${movie.subtitlePath}"></div>
+        <div th:text="${movie.thumbnailPath}"></div>
+    </a>
 </ul>
 
 </body>
