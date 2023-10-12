@@ -2,6 +2,9 @@ package com.bnbnac.moviestream.controller;
 
 import com.bnbnac.moviestream.model.Movie;
 import com.bnbnac.moviestream.service.MovieService;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.core.io.Resource;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,8 +30,14 @@ public class MovieController {
 
     @GetMapping("/watch/{id}")
     public String watch(@PathVariable int id, Model model) {
-        Movie movie = movieService.getMovies().get(id);
+        Movie movie = movieService.findById(id);
         model.addAttribute("movie", movie);
+
         return "watch";
+    }
+
+    @GetMapping("/watch/data/{id}")
+    public ResponseEntity<byte[]> movieData(@PathVariable int id, HttpServletResponse response) {
+        return movieService.doSomething2(id, "100", response);
     }
 }

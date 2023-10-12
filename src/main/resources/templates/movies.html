@@ -5,7 +5,7 @@
 </head>
 
 <body>
-
+<h1>file.movieServer를 그렇게 하는게 맞냐?</h1>
 <ul th:each="movie : ${movies}">
     <a th:href="'watch/' + ${movie.id}">
         <div th:text="${movie.id}"></div>
@@ -13,6 +13,7 @@
         <div th:text="${movie.videoPath}"></div>
         <div th:text="${movie.subtitlePath}"></div>
         <div th:text="${movie.thumbnailPath}"></div>
+        <div th:text="${movie.movieServer}"></div>
     </a>
 </ul>
 

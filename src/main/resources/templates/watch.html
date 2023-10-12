@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Error | Hogwarts</title>
+    <title>Watch | Hogwarts</title>
 </head>
 
 <body>
-<h1>Watch movie</h1>
-<div th:text="${movie.videoPath}"></div>
+<h1 th:text="${movie.movieName}">Watch movie</h1>
+<video controls>
+    <source th:src="'data/' + ${movie.id}" type="video/mp4">
+    Your browser does not support it. please replace with google-chrome.
+</video>
 </body>
 
 </html>
