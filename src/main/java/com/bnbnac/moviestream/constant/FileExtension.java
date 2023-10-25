@@ -17,12 +17,13 @@ public class FileExtension {
         videoExtensions.add("mpeg");
         videoExtensions.add("flv");
 
-        subtitleExtensions.add("srt");
-        subtitleExtensions.add("sub");
+        // vtt is the most supportable at html
+//        subtitleExtensions.add("srt");
+//        subtitleExtensions.add("sub");
         subtitleExtensions.add("vtt");
-        subtitleExtensions.add("smi");
-        subtitleExtensions.add("idx");
-        subtitleExtensions.add("ttml");
+//        subtitleExtensions.add("smi");
+//        subtitleExtensions.add("idx");
+//        subtitleExtensions.add("ttml");
 
         thumbnailExtensions.add("jpeg");
         thumbnailExtensions.add("png");

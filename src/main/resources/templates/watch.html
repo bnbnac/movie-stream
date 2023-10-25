@@ -6,8 +6,11 @@
 
 <body>
 <h1 th:text="${movie.movieName}">Watch movie</h1>
-<video controls>
-    <source th:src="'data/' + ${movie.id}" type="video/mp4">
+<h1 th:text="${movie.movieServer + movie.subtitlePath}">Watch movie</h1>
+
+<video id="player" controls>
+    <source th:src="${movie.movieServer + movie.videoPath}" type="video/mp4">
+    <track kind="subtitles" label="korean" th:src="${movie.movieServer + movie.subtitlePath}" srclang="ko">
     Your browser does not support it. please replace with google-chrome.
 </video>
 </body>

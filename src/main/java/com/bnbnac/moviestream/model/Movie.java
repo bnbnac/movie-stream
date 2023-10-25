@@ -6,8 +6,6 @@ public class Movie {
     private String videoPath;
     private String subtitlePath;
     private String thumbnailPath;
-
-
     private String movieServer;
 
     public Movie() {
