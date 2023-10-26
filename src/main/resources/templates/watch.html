@@ -2,15 +2,21 @@
 <html>
 <head>
     <title>Watch | Hogwarts</title>
+    <style>
+        video::cue {
+            background: transparent;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
 <h1 th:text="${movie.movieName}">Watch movie</h1>
 <h1 th:text="${movie.movieServer + movie.subtitlePath}">Watch movie</h1>
 
-<video id="player" controls>
+<video id="player" controls crossorigin="use-credentials">
     <source th:src="${movie.movieServer + movie.videoPath}" type="video/mp4">
-    <track kind="subtitles" label="korean" th:src="${movie.movieServer + movie.subtitlePath}" srclang="ko">
+    <track default kind="subtitles" label="korean" th:src="${movie.movieServer + movie.subtitlePath}" srclang="ko">
     Your browser does not support it. please replace with google-chrome.
 </video>
 </body>
