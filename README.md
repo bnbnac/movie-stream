@@ -12,3 +12,8 @@ file server랑 신호 주고받는것도 해야겠다 빈 뜰때
 
 movie repository - 이거 결국 해야함. nginx로
 serve하기때문에 movie 목록도 dynamic해야함
+
+constant도 bean으로 값 띄워두기
+캐시 다 꺼버리기
+
+# 이것저것 지우면서 확인해보기

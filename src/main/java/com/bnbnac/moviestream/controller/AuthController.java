@@ -12,7 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AuthController {
     @GetMapping("/auth")
     public ResponseEntity<Void> auth(HttpSession session, HttpServletRequest request) {
-        for (Cookie cookie : request.getCookies()) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+        for (Cookie cookie : cookies) {
             if (cookie.getName().equals("JSESSIONID") && session.getId().equals(cookie.getValue())) {
                 return new ResponseEntity<>(HttpStatus.OK);
             }
