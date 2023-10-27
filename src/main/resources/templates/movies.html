@@ -2,20 +2,99 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Movies | Hogwarts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.movie {
+    width: 30%;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.movie img {
+    max-width: 200px;
+    border-radius: 5px;
+}
+
+.movie h2 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+    </style>
 </head>
 
 <body>
-<h1>file.movieServer를 그렇게 하는게 맞냐?</h1>
-<ul th:each="movie : ${movies}">
-    <a th:href="'watch/' + ${movie.id}">
-        <div th:text="${movie.id}"></div>
-        <div th:text="${movie.movieName}"></div>
-        <div th:text="${movie.videoPath}"></div>
-        <div th:text="${movie.subtitlePath}"></div>
-        <div th:text="${movie.thumbnailPath}"></div>
-        <div th:text="${movie.movieServer}"></div>
-    </a>
-</ul>
+
+<div class="container">
+    <h1>불사조기사단 없어요ㅎㅎ</h1>
+    <div class="movie-list">
+
+        <ul th:each="movie : ${movies}">
+
+            <a th:href="'watch/' + ${movie.id}">
+            <div class="movie">
+                <img th:src="${movie.movieServer + movie.thumbnailPath}" th:alt="${movie.id}">
+            </div>
+            </a>
+
+        </ul>
+
+    </div>
+</div>
+
+<!--<ul th:each="movie : ${movies}">-->
+<!--    <a th:href="'watch/' + ${movie.id}">-->
+<!--        <div th:text="${movie.id}"></div>-->
+<!--        <div th:text="${movie.movieName}"></div>-->
+<!--        <div th:text="${movie.videoPath}"></div>-->
+<!--        <div th:text="${movie.subtitlePath}"></div>-->
+<!--        <div th:text="${movie.thumbnailPath}"></div>-->
+<!--        <div th:text="${movie.movieServer}"></div>-->
+<!--    </a>-->
+<!--</ul>-->
 
 </body>
 </html>

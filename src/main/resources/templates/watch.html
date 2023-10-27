@@ -12,7 +12,6 @@
 
 <body>
 <h1 th:text="${movie.movieName}">Watch movie</h1>
-<h1 th:text="${movie.movieServer + movie.subtitlePath}">Watch movie</h1>
 
 <video id="player" controls crossorigin="use-credentials">
     <source th:src="${movie.movieServer + movie.videoPath}" type="video/mp4">
