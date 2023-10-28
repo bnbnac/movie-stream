@@ -1,19 +1,62 @@
-# TODO
+# Local video streaming web app
 
 ---
-세션 : 인원 제한 시스템 자원
+### need three system variables
+- $MOVIE_STREAM : password to login(static on server. user just input this)
+- $MOVIE_STORAGE : data directory
+- $MOVIE_SERVER : ${protocol}://${router-ip}:${data-serving-port-forworded-by-router}/storage
 
-캐싱 : 이어보기
+---
 
-builder pattern
+### nginx config example
+```nginx
+http {
+	types {
+		text/vtt vtt;
+	}
 
-file server랑 신호 주고받는것도 해야겠다 빈 뜰때
+	server {
+		listen ${hosting-port-forworded-by-router};
+		location / {
+			proxy_pass http://127.0.0.1:{port-where-spring-boot-is-running}/;
+		}
+	}
 
+	server {
+		listen ${data-serving-port-forworded-by-router};
 
-movie repository - 이거 결국 해야함. nginx로
-serve하기때문에 movie 목록도 dynamic해야함
+		location /storage/ {
+			auth_request /auth;
+			alias ${data-directory}/;
+			error_page 401 = ${protocol}://${router-ip}:${hosting-port-forworded-by-router}/;
+			add_header 'Access-Control-Allow-Origin' '${protocol}://${router-ip}:${hosting-port-forworded-by-router}/';
+			add_header 'Access-Control-Allow-Credentials' 'true';
+			add_header 'Access-Control-Allow-Headers' 'Origin, Content-Type, Accept, Authorization';
+		}
 
-constant도 bean으로 값 띄워두기
-캐시 다 꺼버리기
+		location /auth {
+			internal;
+			proxy_pass http://127.0.0.1:${port-where-spring-boot-is-running}/auth;
+		}
+	}
 
-# 이것저것 지우면서 확인해보기
+	sendfile on;
+	tcp_nopush on;
+	types_hash_max_size 2048;
+        server_tokens off;
+
+	include /etc/nginx/mime.types;
+	default_type application/octet-stream;
+
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3; # Dropping SSLv3, ref: POODLE
+	ssl_prefer_server_ciphers on;
+
+	access_log /var/log/nginx/access.log;
+	error_log /var/log/nginx/error.log;
+
+	gzip on;
+	
+	include /etc/nginx/conf.d/*.conf;
+	include /etc/nginx/sites-enabled/*;
+}
+```
