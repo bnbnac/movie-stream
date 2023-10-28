@@ -15,9 +15,9 @@ root
 <br>
 |--영화1
 <br>
-|&nbsp;&nbsp;&nbsp;├video.mp4
+|&nbsp;&nbsp;&nbsp;|--video.mp4
 <br>
-|&nbsp;&nbsp;&nbsp;├sub.vtt
+|&nbsp;&nbsp;&nbsp;|--sub.vtt
 <br>
 |&nbsp;&nbsp;&nbsp;ㄴthumbnail.webp
 <br>
@@ -52,7 +52,6 @@ http {
 			error_page 401 = ${protocol}://${router-ip}:${hosting-port-forworded-by-router}/;
 			add_header 'Access-Control-Allow-Origin' '${protocol}://${router-ip}:${hosting-port-forworded-by-router}/';
 			add_header 'Access-Control-Allow-Credentials' 'true';
-			add_header 'Access-Control-Allow-Headers' 'Origin, Content-Type, Accept, Authorization';
 		}
 
 		location /auth {
