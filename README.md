@@ -1,10 +1,31 @@
 # Local video streaming web app
+로컬에 저장된 비디오를 스트리밍하는 웹서비스입니다. nginx를 이용해
+ mp4 비디오와 vtt 자막을 제공하면 특별한 설정 없이도 크롬, 브레이브,
+ 사파리 등의 클라이언트 브라우저가 잘 연동되어 partial-content를
+ 받아 재생합니다. 추후 데이터베이스를 연동하여 remote 서버에서
+ 비디오를 제공할 수 있도록 업데이트 할 예정입니다.
 
 ---
 ### need three system variables
 - $MOVIE_STREAM : password to login(static on server. user just input this)
-- $MOVIE_STORAGE : data directory
-- $MOVIE_SERVER : ${protocol}://${router-ip}:${data-serving-port-forworded-by-router}/storage
+- $MOVIE_SERVER : `protocol`://`router-ip`:`data-listening-port`/storage
+- $MOVIE_STORAGE : root data directory. the structure must be like below
+  <br><br>
+root
+<br>
+|--영화1
+<br>
+|&nbsp;&nbsp;&nbsp;├video.mp4
+<br>
+|&nbsp;&nbsp;&nbsp;├sub.vtt
+<br>
+|&nbsp;&nbsp;&nbsp;ㄴthumbnail.webp
+<br>
+|
+<br>
+|--영화2
+<br>
+...
 
 ---
 
